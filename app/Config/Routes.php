@@ -12,4 +12,3 @@ $routes->get('/', 'Home::index');
 // $routes->get('/profile/(:any)/(:any)/(:any)', 'Home::profile');
 
 $routes->get('/profile/(:any)/(:any)/(:any)', [Home::class, 'profile']);
-$routes->get('/profile/(:any)', [Home::class, 'profile']);
