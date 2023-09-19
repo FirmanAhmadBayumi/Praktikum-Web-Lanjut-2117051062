@@ -1,33 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tugas 3 Prak</title>
+    <title>Praktikum Pemrograman Web Lanjut</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?= base_url("assets/css/create_user.css")?>">
+    <link rel="stylesheet" href="<?= base_url("assets/css/create_user.css") ?>">
 </head>
+
 <body>
     <div class="container">
         <div class="card mt-4 col-5">
             <div class="card-header text-center">
-                    <h2>FORM BIODATA</h2>
+                <h2>FORM BIODATA</h2>
             </div>
             <div class="card-body">
                 <form method="POST" action="<?= base_url('/user/store') ?>">
                     <div class="row mb-3">
                         <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="nama" name="nama"
-                                placeholder="Nama" required />
+                            <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama" required />
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <label for="kelas" class="col-sm-2 col-form-label">Kelas</label>
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" name="kelas" id="kelas" placeholder="Kelas"
-                                required />
+                            <select class="form-select" name="kelas" id="kelas">
+                                <?php
+                                foreach ($kelas as $item){
+                                ?>
+                                    <option value="<?= $item['id'] ?>">
+                                        <?= $item['nama_kelas'] ?>
+                                    </option>
+                                <?php
+                                }
+                                ?>
+                            </select>
                         </div>
                     </div>
 
@@ -47,4 +57,5 @@
         </div>
     </div>
 </body>
+
 </html>
