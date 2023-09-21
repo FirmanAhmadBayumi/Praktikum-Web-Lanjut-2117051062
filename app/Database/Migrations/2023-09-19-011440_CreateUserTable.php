@@ -32,7 +32,7 @@ class CreateUserTable extends Migration
                 'type' => 'DATETIME',
                 'null' => true,
             ],
-            'update_at' => [
+            'updatd_at' => [
                 'type' => 'DATETIME',
                 'null' => true,
             ],
