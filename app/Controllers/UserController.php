@@ -7,6 +7,7 @@ use App\Controllers\BaseController;
 
 class UserController extends BaseController
 {
+    protected $helpers = ['form'];
     public function index()
     {
         //
@@ -44,7 +45,7 @@ class UserController extends BaseController
         ];
 
         $data = [
-            'kelas' => $kelas,
+            'kelas' => $kelas
         ];
 
         return view('create_user', $data);
@@ -53,6 +54,11 @@ class UserController extends BaseController
     public function store()
     {
         $userModel = new UserModel();
+
+        if (!$this->validate($userModel->getValidationRules())) {
+            session()->setFlashdata($this->validator->getErrors());
+            return redirect()->back()->withInput();
+        }
 
         $userModel->saveUser([
             'nama' => $this->request->getVar('nama'),
