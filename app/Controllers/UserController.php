@@ -55,7 +55,28 @@ class UserController extends BaseController
     {
         $userModel = new UserModel();
 
-        if (!$this->validate($userModel->getValidationRules())) {
+        if (!$this->validate([
+                'nama' => [
+                    'rules' => 'required|alpha_space',
+                    'errors' => [
+                        'required' => 'Nama Harus Diisi !',
+                        'alpha_space' => 'Nama Harus Diisi Huruf dan Spasi'
+                    ]
+                ],
+                'npm' => [
+                    'rules' => 'required|is_unique[user.npm]',
+                    'errors' => [
+                        'required' => 'NPM Harus Diisi !',
+                        'is_unique' => 'NPM Sudah Terdaftar !'
+                    ]
+                ],
+                'kelas' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Kelas Harus Dipilih !'
+                    ]
+                ]
+        ])) {
             session()->setFlashdata($this->validator->getErrors());
             return redirect()->back()->withInput();
         }
