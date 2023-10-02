@@ -2,50 +2,38 @@
 
 namespace App\Controllers;
 
+use App\Models\KelasModel;
 use App\Models\UserModel;
 use App\Controllers\BaseController;
 
 class UserController extends BaseController
 {
     protected $helpers = ['form'];
+    public $kelasModel;
+    public $userModel;
     public function index()
     {
-        //
-    }
-    public function profile($nama = "", $kelas = "", $npm = "")
-    {
         $data = [
-            // 'kelas' itu adlh key, dan 'B' adala value 
-            'nama' => $nama,
-            'kelas' => $kelas,
-            'npm' => $npm,
+            'title' => 'List User',
+            'users' => $this->userModel->getUser(),
         ];
-        return view('profile', $data);
-    }
 
+        return view('list_user', $data);
+    }
+    public function __construct()
+    {
+        $this->kelasModel = new KelasModel();
+        $this->userModel = new UserModel();
+    }
     public function create()
     {
-        $kelas = [
-            [
-                'id' => 1,
-                'nama_kelas' => 'A'
-            ],
-            [
-                'id' => 2,
-                'nama_kelas' => 'B'
-            ],
-            [
-                'id' => 3,
-                'nama_kelas' => 'C'
-            ],
-            [
-                'id' => 4,
-                'nama_kelas' => 'D'
-            ],
-        ];
+        $kelasModel = new KelasModel();
+
+        $kelas = $this->kelasModel->getKelas();
 
         $data = [
-            'kelas' => $kelas
+            'title' => 'Create User',
+            'kelas' => $kelas,
         ];
 
         return view('create_user', $data);
@@ -81,13 +69,14 @@ class UserController extends BaseController
             return redirect()->back()->withInput();
         }
 
-        $userModel->saveUser([
+        $this->userModel->saveUser([
             'nama' => $this->request->getVar('nama'),
             'id_kelas' => $this->request->getVar('kelas'),
             'npm' => $this->request->getVar('npm'),
         ]);
 
         $data = [
+            'title' => 'Profile',
             'nama' => $this->request->getVar('nama'),
             'kelas' => $this->request->getVar('kelas'),
             'npm' => $this->request->getVar('npm'),
