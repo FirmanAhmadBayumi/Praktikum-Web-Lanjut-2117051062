@@ -6,7 +6,7 @@
                 <h2>FORM BIODATA</h2>
             </div>
             <div class="card-body">
-                <form method="POST" action="<?= base_url('/user/store') ?>">
+                <form method="POST" action="<?= base_url('/user/store') ?>" enctype="multipart/form-data">
                     <div class="row mb-3">
                         <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                         <div class="col-sm-9">
@@ -41,7 +41,7 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row mb-3">
                         <label for="npm" class="col-sm-2 col-form-label">NPM</label>
                         <div class="col-sm-5">
                             <input type="text" class="form-control <?= (empty(validation_show_error('npm'))) ? '' : 'is-invalid' ?>" 
@@ -49,6 +49,13 @@
                             <div class="invalid-feedback">
                                 <?= validation_show_error('npm') ?>
                             </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <label for="foto" class="col-sm-2 col-form-label">Foto</label>
+                        <div class="col-sm-7">
+                            <input type="file" class="form-control" name="foto" id="foto"/>
                         </div>
                     </div>
 
