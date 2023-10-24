@@ -32,13 +32,21 @@
                         <?= $user['nama_kelas'] ?>
                     </td>
                     <td>
-                        <a class="btn btn-info"href="<?= base_url('user/' . $user['id']) ?>">Detail</a>
-                        <button type="button" class="btn btn-warning"><img src="<?= base_url("assets/svg/edit.svg"); ?>"
-                                alt="" style="width:23px; height:23px;"></button>
-                        <button type="button" class="btn btn-danger"><img src="<?= base_url("assets/svg/hapus.svg"); ?>"
-                                alt="" style="width:23px; height:23px;"></button>
-                    </td>
-                </tr>
+                        <a class="btn btn-info" href="<?= base_url('user/' . $user['id']) ?>">Detail</a>
+                        <a class="btn btn-warning" href="<?= base_url('user/' . $user['id'] . '/edit') ?>">
+                            <img src="<?= base_url("assets/svg/edit.svg"); ?>" alt="" 
+                            style="width:23px; height:23px;">
+                        </a>
+                        <form action="<?= base_url('user/' . $user['id']) ?>" method="POST" style="display: inline-block">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <?= csrf_field() ?>
+                            <button type="submit" class="btn btn-danger">
+                                <img src="<?= base_url("assets/svg/hapus.svg"); ?>" alt="" 
+                                style="width:23px; height:23px;">
+                            </button>
+                        </form>
+                        </td>
+                    </tr>
                 <?php
             }
             ?>
