@@ -1,26 +1,14 @@
 <?= $this->extend('layouts/app') ?>
 <?= $this->section('content') ?>
-<div class="container">
-    <div class="profil">
-        <img src="<?= $user['foto'] ?? base_url('assets/images/default_foto.png') ?>" alt="Foto Profil">
-    </div>
-
-    <div class="nama">
-        <button type="button" class="btn btn-dark d-grid gap-2 col-3 mx-auto mt-3 fs-5">
-            <?= $user['nama'] ?>
-        </button>
-    </div>
-
-    <div class="kelas">
-        <button type="button" class="btn btn-dark d-grid gap-2 col-3 mx-auto mt-3 fs-5">
-            <?= $user['nama_kelas'] ?>
-        </button>
-    </div>
-
-    <div class="npm">
-        <button type="button" class="btn btn-dark d-grid gap-2 col-3 mx-auto mt-3 fs-5">
-            <?= $user['npm'] ?>
-        </button>
+<div class="container mb-5" style="display: flex; justify-content: center; align-items: center; height: 70vh;">
+    <div class="card mt-5" style="width: 20rem;">
+        <img src="<?= $user['foto'] ?? base_url('assets/images/default_foto.png') ?>" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h3 class="card-title text-center mb-3  ">Data User</h3>
+            <h5 class="mb-3">Nama: <?= $user['nama'] ?></h5>
+            <h5 class="mb-3">NPM: <?= $user['npm'] ?></h5>
+            <h5 class="mt-3">Kelas: <?= $user['nama_kelas'] ?></h5>
+        </div>
     </div>
 </div>
 <?= $this->endSection() ?>

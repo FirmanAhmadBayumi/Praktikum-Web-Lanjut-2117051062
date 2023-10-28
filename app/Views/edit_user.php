@@ -1,16 +1,16 @@
 <?= $this->extend('layouts/app') ?>
 <?= $this->section('content') ?>
-<div class="container">
-    <div class="card mt-4 col-5">
-        <div class="card-header text-center">
-            <h2>FORM BIODATA</h2>
+<div class="container" style="display: flex; justify-content: center; align-items: center; height: 80vh;">
+    <div class="card col-5">
+        <div class="card-header text-center bg-light">
+            <h2>FORM EDIT BIODATA</h2>
         </div>
-        <div class="card-body">
+        <div class="card-body bg-secondary">
             <form method="POST" action="<?= base_url('/user/' . $user['id']) ?>" enctype="multipart/form-data">
                 <input type="hidden" name="_method" value="PUT">
                 <?= csrf_field() ?>
                 <div class="row mb-3">
-                    <label for="nama" class="col-sm-2 col-form-label">Nama</label>
+                    <label for="nama" class="col-sm-2 col-form-label text-light">Nama</label>
                     <div class="col-sm-9">
                         <input type="text"
                             class="form-control <?= (empty(validation_show_error('nama'))) ? '' : 'is-invalid' ?>"
@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="row mb-3">
-                    <label for="kelas" class="col-sm-2 col-form-label">Kelas</label>
+                    <label for="kelas" class="col-sm-2 col-form-label text-light">Kelas</label>
                     <div class="col-sm-4">
                         <select class="form-select 
                             <?= (empty(validation_show_error('kelas'))) ? '' : 'is-invalid' ?>" name="kelas"
@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="row mb-3">
-                    <label for="npm" class="col-sm-2 col-form-label">NPM</label>
+                    <label for="npm" class="col-sm-2 col-form-label text-light">NPM</label>
                     <div class="col-sm-5">
                         <input type="text"
                             class="form-control <?= (empty(validation_show_error('npm'))) ? '' : 'is-invalid' ?>"
@@ -57,19 +57,15 @@
                 </div>
 
                 <img src="<?= $user['foto'] ?? base_url('assets/images/default_foto.png') ?>" alt="Foto"
-                    style="height:150px; width:170px; border-radius:50%; ">
+                    style="height:150px; width:150px; border-radius:50%; ">
                 <div class="row mt-3">
-                    <label for="foto" class="col-sm-2 col-form-label">Foto</label>
+                    <label for="foto" class="col-sm-2 col-form-label text-light">Foto</label>
                     <div class="col-sm-7">
                         <input type="file" class="form-control" name="foto" id="foto" />
                     </div>
                 </div>
-
-                <button type="submit" class="btn btn-primary mt-3">Simpan</button>
+                <button type="submit" class="btn btn-success mt-3">Simpan</button>
             </form>
-        </div>
-        <div class="card-footer text-body-secondary text-center">
-            <p> Copyright © Firman Ahmad Bayumi </p>
         </div>
     </div>
 </div>

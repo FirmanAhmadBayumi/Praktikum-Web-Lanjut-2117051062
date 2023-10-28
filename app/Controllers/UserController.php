@@ -27,8 +27,6 @@ class UserController extends BaseController
     }
     public function create()
     {
-        $kelasModel = new KelasModel();
-
         $kelas = $this->kelasModel->getKelas();
 
         $data = [
